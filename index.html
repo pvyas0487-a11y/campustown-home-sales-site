@@ -1,31 +1,108 @@
 <!DOCTYPE html>
-<!-- A placeholder from the Home Sales template. Replace this file with your site's first page. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Under construction</title>
-  <!-- An empty icon, so the browser doesn't log an error looking for favicon.ico -->
+  <title>Home sale prices in college towns</title>
   <link rel="icon" href="data:,">
   <style>
-    :root { color-scheme: light dark; }
-    body {
-      max-width: 40rem;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-      font-family: system-ui, sans-serif;
-      line-height: 1.5;
+    :root { color-scheme: light; --ink: #18332d; --muted: #52645e; --line: #dce5df; --green: #246b52; --pale: #e8f1eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f8f5; color: var(--ink); font: 16px/1.55 system-ui, sans-serif; }
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.25rem; }
+    header { max-width: 740px; margin-bottom: 2rem; }
+    .eyebrow { color: var(--green); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.08; margin: .45rem 0 1rem; letter-spacing: -.035em; }
+    p { color: var(--muted); }
+    section { background: white; border: 1px solid var(--line); border-radius: 14px; padding: clamp(1rem, 3vw, 2rem); margin: 1.25rem 0; box-shadow: 0 5px 20px #18332d0a; }
+    h2 { margin: 0 0 .25rem; font-size: 1.35rem; }
+    .section-note { margin: 0 0 1.5rem; font-size: .94rem; }
+    .chart { display: grid; gap: .7rem; }
+    .bar-row { display: grid; grid-template-columns: minmax(115px, 175px) 1fr minmax(82px, 118px); align-items: center; gap: .75rem; }
+    .city { font-size: .91rem; }
+    .track { height: 17px; background: var(--pale); border-radius: 4px; overflow: hidden; }
+    .bar { height: 100%; width: var(--width); background: var(--green); border-radius: inherit; }
+    .value { text-align: right; font-variant-numeric: tabular-nums; font-size: .9rem; font-weight: 650; white-space: nowrap; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: .68rem .75rem; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+    td:nth-child(2), td:nth-child(3) { font-variant-numeric: tabular-nums; }
+    td:last-child, th:last-child { text-align: right; }
+    tbody tr:last-child td { border-bottom: 0; }
+    footer { padding-top: .5rem; font-size: .88rem; }
+    footer p { margin: .35rem 0; }
+    @media (max-width: 560px) {
+      main { padding: 2rem .75rem; }
+      .bar-row { grid-template-columns: minmax(95px, 1fr) 1fr; gap: .35rem .6rem; }
+      .value { grid-column: 2; grid-row: 1; font-size: .82rem; }
+      .track { grid-column: 1 / -1; grid-row: 2; margin-bottom: .35rem; }
     }
-    footer { margin-top: 3rem; font-size: 0.875rem; opacity: 0.75; }
   </style>
 </head>
 <body>
   <main>
-    <h1>This site is under construction</h1>
-    <p>It will show findings from the College-town home sales dataset.</p>
+    <header>
+      <div class="eyebrow">College-town home sales · 2026</div>
+      <h1>What homes sell for near campus</h1>
+      <p>Median sale price across 18 college-town communities. Each city is calculated from its recorded home sales.</p>
+    </header>
+
+    <section aria-labelledby="chart-title">
+      <h2 id="chart-title">Median sale price by city</h2>
+      <p class="section-note">Bars share a scale; amounts are rounded to whole dollars.</p>
+      <div class="chart" role="img" aria-label="Horizontal bar chart showing median sale price for 18 cities, from Urbana at $229,900 to Davis at $889,000. Exact values are listed in the table below.">
+        <div class="bar-row"><span class="city">Urbana, IL</span><div class="track"><div class="bar" style="--width:25.8%"></div></div><span class="value">$229,900</span></div>
+        <div class="bar-row"><span class="city">Champaign, IL</span><div class="track"><div class="bar" style="--width:27%"></div></div><span class="value">$240,000</span></div>
+        <div class="bar-row"><span class="city">Lafayette, IN</span><div class="track"><div class="bar" style="--width:29.2%"></div></div><span class="value">$260,000</span></div>
+        <div class="bar-row"><span class="city">Iowa City, IA</span><div class="track"><div class="bar" style="--width:38.5%"></div></div><span class="value">$342,000</span></div>
+        <div class="bar-row"><span class="city">Gainesville, FL</span><div class="track"><div class="bar" style="--width:39.4%"></div></div><span class="value">$350,000</span></div>
+        <div class="bar-row"><span class="city">Athens, GA</span><div class="track"><div class="bar" style="--width:41.6%"></div></div><span class="value">$370,000</span></div>
+        <div class="bar-row"><span class="city">West Lafayette, IN</span><div class="track"><div class="bar" style="--width:42.7%"></div></div><span class="value">$379,900</span></div>
+        <div class="bar-row"><span class="city">Savoy, IL</span><div class="track"><div class="bar" style="--width:45.3%"></div></div><span class="value">$402,700</span></div>
+        <div class="bar-row"><span class="city">Madison, WI</span><div class="track"><div class="bar" style="--width:47.3%"></div></div><span class="value">$421,000</span></div>
+        <div class="bar-row"><span class="city">State College, PA</span><div class="track"><div class="bar" style="--width:48.4%"></div></div><span class="value">$430,000</span></div>
+        <div class="bar-row"><span class="city">Newberry, FL</span><div class="track"><div class="bar" style="--width:49.5%"></div></div><span class="value">$439,995</span></div>
+        <div class="bar-row"><span class="city">Ann Arbor, MI</span><div class="track"><div class="bar" style="--width:64.2%"></div></div><span class="value">$571,000</span></div>
+        <div class="bar-row"><span class="city">Carrboro, NC</span><div class="track"><div class="bar" style="--width:67.6%"></div></div><span class="value">$601,250</span></div>
+        <div class="bar-row"><span class="city">Middleton, WI</span><div class="track"><div class="bar" style="--width:68.7%"></div></div><span class="value">$611,000</span></div>
+        <div class="bar-row"><span class="city">Charlottesville, VA</span><div class="track"><div class="bar" style="--width:69.1%"></div></div><span class="value">$615,000</span></div>
+        <div class="bar-row"><span class="city">Chapel Hill, NC</span><div class="track"><div class="bar" style="--width:82.7%"></div></div><span class="value">$735,000</span></div>
+        <div class="bar-row"><span class="city">Pittsboro, NC</span><div class="track"><div class="bar" style="--width:98.7%"></div></div><span class="value">$876,986</span></div>
+        <div class="bar-row"><span class="city">Davis, CA</span><div class="track"><div class="bar" style="--width:100%"></div></div><span class="value">$889,000</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="table-title">
+      <h2 id="table-title">All city medians</h2>
+      <p class="section-note">Sales below $1,000 are excluded, following the dataset notes.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">City</th><th scope="col">State</th><th scope="col">Sales included</th><th scope="col">Median sale price</th></tr></thead>
+          <tbody>
+            <tr><td>Urbana</td><td>IL</td><td>1,131</td><td>$229,900</td></tr>
+            <tr><td>Champaign</td><td>IL</td><td>2,286</td><td>$240,000</td></tr>
+            <tr><td>Lafayette</td><td>IN</td><td>3,057</td><td>$260,000</td></tr>
+            <tr><td>Iowa City</td><td>IA</td><td>1,909</td><td>$342,000</td></tr>
+            <tr><td>Gainesville</td><td>FL</td><td>5,477</td><td>$350,000</td></tr>
+            <tr><td>Athens</td><td>GA</td><td>2,813</td><td>$370,000</td></tr>
+            <tr><td>West Lafayette</td><td>IN</td><td>1,559</td><td>$379,900</td></tr>
+            <tr><td>Savoy</td><td>IL</td><td>247</td><td>$402,700</td></tr>
+            <tr><td>Madison</td><td>WI</td><td>5,061</td><td>$421,000</td></tr>
+            <tr><td>State College</td><td>PA</td><td>1,350</td><td>$430,000</td></tr>
+            <tr><td>Newberry</td><td>FL</td><td>152</td><td>$439,995</td></tr>
+            <tr><td>Ann Arbor</td><td>MI</td><td>3,020</td><td>$571,000</td></tr>
+            <tr><td>Carrboro</td><td>NC</td><td>208</td><td>$601,250</td></tr>
+            <tr><td>Middleton</td><td>WI</td><td>645</td><td>$611,000</td></tr>
+            <tr><td>Charlottesville</td><td>VA</td><td>2,774</td><td>$615,000</td></tr>
+            <tr><td>Chapel Hill</td><td>NC</td><td>2,716</td><td>$735,000</td></tr>
+            <tr><td>Pittsboro</td><td>NC</td><td>92</td><td>$876,986</td></tr>
+            <tr><td>Davis</td><td>CA</td><td>941</td><td>$889,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer><p>Data: College-town home sales dataset, version 1.0 (2026). University of Illinois-Deloitte Foundation Center for Business Emerging Technologies. Data collected March 2026.</p></footer>
   </main>
-  <footer>
-    <p>Data: College-town home sales dataset, version 1.0 (2026). University of Illinois-Deloitte Foundation Center for Business Emerging Technologies. Data collected March 2026.</p>
-  </footer>
 </body>
 </html>
